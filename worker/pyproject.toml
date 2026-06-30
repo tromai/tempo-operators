@@ -18,7 +18,7 @@ dev = [
     "pyright",
     "ruff",
     # INTEGRATION TESTS
-    "jubilant",
+    "jubilant @ git+https://github.com/tromai/jubilant@improve-jubilant-log-2",
     "pytest-jubilant>=2,<3",
     "pytest-sugar",
     "requests",
