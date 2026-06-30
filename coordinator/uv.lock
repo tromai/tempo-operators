@@ -467,13 +467,9 @@ wheels = [
 [[package]]
 name = "jubilant"
 version = "1.10.0"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/tromai/jubilant?rev=improve-jubilant-log-2#1ab069b85428cf090871009887c3d87334db6133" }
 dependencies = [
     { name = "pyyaml" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/0e/4b/faf53677e40ce2bf836d53d33f97b14a2a5083e25984115fa28a0dd33bb9/jubilant-1.10.0.tar.gz", hash = "sha256:c0040c5e897108ea4efb65bfd3d4bfa0ff62ef91f2a4c6ff6d6dbad8665cc992", size = 33147, upload-time = "2026-05-28T03:54:42.62Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/59/af/3ee025257fc62c0285833fa8c2c099a86a65a1d9e37eb4f41e301180deac/jubilant-1.10.0-py3-none-any.whl", hash = "sha256:af437ca48eddb6b9eace888ec60a299b003eb425b20009c21c2f49c86d126741", size = 34744, upload-time = "2026-05-28T03:54:41.074Z" },
 ]
 
 [[package]]
@@ -830,15 +826,11 @@ wheels = [
 
 [[package]]
 name = "pytest-jubilant"
-version = "2.1.1"
-source = { registry = "https://pypi.org/simple" }
+version = "0.1"
+source = { git = "https://github.com/tromai/pytest-jubilant?rev=dump-log-to-logger#ce0c529a9ebaad1281d0465815475746dbf347cf" }
 dependencies = [
     { name = "jubilant" },
     { name = "pytest" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/11/3baee677f3cf51ef41e06a7cbcfe8551613723695a458997b9d63026e0b5/pytest_jubilant-2.1.1.tar.gz", hash = "sha256:04c083ef1366f92237da79e3d499094ca50f50519a19462f388c38c699ee495a", size = 17971, upload-time = "2026-06-09T23:01:56.332Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/ea/33ecce9a52a022547544ab3b6393368944b1b55480a35ae00b7d9bd02f39/pytest_jubilant-2.1.1-py3-none-any.whl", hash = "sha256:d710cf9c41fb8daed6218d7b6ce68f4d4c234c5b0ee066d2be1dc9dd07265d35", size = 14922, upload-time = "2026-06-09T23:01:55.13Z" },
 ]
 
 [[package]]
@@ -966,7 +958,7 @@ requires-dist = [
     { name = "coordinated-workers", specifier = ">=4.1.2" },
     { name = "coverage", extras = ["toml"], marker = "extra == 'dev'" },
     { name = "cryptography" },
-    { name = "jubilant", marker = "extra == 'dev'" },
+    { name = "jubilant", marker = "extra == 'dev'", git = "https://github.com/tromai/jubilant?rev=improve-jubilant-log-2" },
     { name = "lightkube-extensions" },
     { name = "minio", marker = "extra == 'dev'" },
     { name = "ops", extras = ["testing", "tracing"], marker = "extra == 'dev'" },
@@ -975,7 +967,7 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'" },
     { name = "pytest-cov", marker = "extra == 'dev'" },
     { name = "pytest-interface-tester", marker = "extra == 'dev'" },
-    { name = "pytest-jubilant", marker = "extra == 'dev'", specifier = ">=2,<3" },
+    { name = "pytest-jubilant", marker = "extra == 'dev'", git = "https://github.com/tromai/pytest-jubilant?rev=dump-log-to-logger" },
     { name = "pytest-sugar", marker = "extra == 'dev'" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "requests", marker = "extra == 'dev'" },
