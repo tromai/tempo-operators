@@ -61,7 +61,6 @@ fail_under = 90
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-p no:sugar"
 markers = ["juju_setup", "juju_teardown"]
 filterwarnings = ["ignore"]
 
