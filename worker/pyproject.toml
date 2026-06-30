@@ -39,6 +39,7 @@ fail_under = 90
 
 [tool.pytest.ini_options]
 minversion = "6.0"
+addopts = "-p no:sugar"
 asyncio_mode = "auto"
 
 log_level = "INFO"
