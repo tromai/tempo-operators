@@ -467,7 +467,7 @@ wheels = [
 [[package]]
 name = "jubilant"
 version = "1.10.0"
-source = { git = "https://github.com/tromai/jubilant?rev=improve-jubilant-log-2#1f26b380dac8476e4d728e43217a70dd6450135e" }
+source = { git = "https://github.com/tromai/jubilant?rev=improve-jubilant-log-2#402978cea1fc3b0727238253be93f44273ecc082" }
 dependencies = [
     { name = "pyyaml" },
 ]
