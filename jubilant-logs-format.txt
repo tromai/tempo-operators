@@ -1,0 +1,60 @@
+# == both units change identically with app ==
+INFO  jubilant.wait app status changed tempo: waiting () -> maintenance (installing charm software)
+INFO  jubilant.wait ---- /0: waiting () -> maintenance (installing charm software)
+INFO  jubilant.wait ---- /1: waiting () -> maintenance (installing charm software)
+
+# == app changes, both units unchanged ==
+INFO  jubilant.wait app status changed tempo: blocked (Missing worker) -> blocked (S3 not ready)
+INFO  jubilant.wait ---- /0: no change (blocked)
+INFO  jubilant.wait ---- /1: no change (blocked)
+
+# == app no change, one unit changes ==
+INFO  jubilant.wait app status changed tempo: no change (active)
+INFO  jubilant.wait ---- /0: no change (active)
+INFO  jubilant.wait ---- /1: waiting (installing) -> active (ready)
+
+# == app no change, both units change differently ==
+INFO  jubilant.wait app status changed tempo: no change (active)
+INFO  jubilant.wait ---- /0: active (v2.1) -> active (v2.2)
+INFO  jubilant.wait ---- /1: waiting (installing) -> active (v2.2)
+
+# == first appearance: all fresh ==
+INFO  jubilant.wait app status changed prometheus: active
+INFO  jubilant.wait ---- /0: active
+INFO  jubilant.wait ---- /1: active
+
+# == app in error, one unit ok, the other also error ==
+ERROR jubilant.wait app status changed tempo-worker-ingester: active (ingester ready.) -> error (coordinator unreachable)
+INFO  jubilant.wait ---- /0: no change (active)
+ERROR jubilant.wait ---- /1: active (ingester ready.) -> error (coordinator unreachable)
+
+# == app ok, /0 errors, /1 ok ==
+INFO  jubilant.wait app status changed tempo-worker-compactor: no change (active)
+ERROR jubilant.wait ---- /0: active (compactor ready.) -> error (disk full)
+INFO  jubilant.wait ---- /1: no change (active)
+
+# == app ok, /0 blocked, /1 active ==
+INFO  jubilant.wait app status changed tempo: no change (active)
+INFO  jubilant.wait ---- /0: active (ready) -> blocked (port conflict)
+INFO  jubilant.wait ---- /1: no change (active (ready))
+
+# == app + /1 change together, /0 lags behind ==
+INFO  jubilant.wait app status changed tempo: waiting () -> maintenance (reconfiguring)
+INFO  jubilant.wait ---- /0: no change (waiting)
+INFO  jubilant.wait ---- /1: waiting () -> maintenance (reconfiguring)
+
+# == empty -> non-empty message (all units mirror) ==
+INFO  jubilant.wait app status changed seaweedfs: unknown () -> maintenance (Connection refused)
+INFO  jubilant.wait ---- /0: unknown () -> maintenance (Connection refused)
+INFO  jubilant.wait ---- /1: unknown () -> maintenance (Connection refused)
+
+# == non-empty -> empty message (/1 finished first) ==
+INFO  jubilant.wait app status changed seaweedfs: no change (maintenance)
+INFO  jubilant.wait ---- /0: maintenance (reconfiguring) -> active
+INFO  jubilant.wait ---- /1: maintenance (reconfiguring) -> active
+INFO  jubilant.wait app status changed seaweedfs: maintenance (reconfiguring) -> active
+INFO  jubilant.wait ---- /0: no change (active)
+INFO  jubilant.wait ---- /1: no change (active)
+
+# == app has no units (e.g. subordinate charm) ==
+INFO  jubilant.wait app status changed nrpe: blocked (Nagios not configured)

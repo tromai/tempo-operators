@@ -7,3 +7,6 @@ The charm in `./coordinator` deploys and operates a configurator charm and an ng
 
 The charm in `./worker` deploys and operates one or multiple roles of Tempo's distributed architecture.
 
+
+hehe
+

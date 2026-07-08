@@ -1,0 +1,52 @@
+# Note: when app changes, only units that changed are printed.
+
+# == both units change identically with app ==
+INFO  jubilant.wait app status changed tempo: waiting () -> maintenance (installing charm software)
+INFO  jubilant.wait ---- /0: waiting () -> maintenance (installing charm software)
+INFO  jubilant.wait ---- /1: waiting () -> maintenance (installing charm software)
+
+# == app changes, both units unchanged (no message) ==
+INFO  jubilant.wait app status changed tempo: blocked (Missing worker) -> blocked (S3 not ready)
+
+# == first appearance: all fresh ==
+INFO  jubilant.wait app status changed prometheus: active ()
+INFO  jubilant.wait ---- /0: active ()
+INFO  jubilant.wait ---- /1: active ()
+
+# == app in error, one unit ok, one unit also error ==
+ERROR jubilant.wait app status changed tempo-worker-ingester: active (ingester ready.) -> error (coordinator unreachable)
+ERROR jubilant.wait ---- /1: active (ingester ready.) -> error (coordinator unreachable)
+
+# == app + /1 change, /0 unchanged ==
+INFO  jubilant.wait app status changed tempo: waiting () -> maintenance (reconfiguring)
+INFO  jubilant.wait ---- /1: waiting () -> maintenance (reconfiguring)
+
+# == app changes, /0 errors, /1 ok ==
+ERROR jubilant.wait app status changed tempo-worker-compactor: active -> error (Pebble check DOWN.)
+ERROR jubilant.wait ---- /0: active (compactor ready.) -> error (disk full)
+
+# == app changes, /0 blocked, /1 active unchanged ==
+INFO  jubilant.wait app status changed tempo: waiting () -> maintenance (reconfiguring)
+INFO  jubilant.wait ---- /0: waiting () -> blocked (port conflict)
+
+# == empty -> non-empty message (all units mirror) ==
+INFO  jubilant.wait app status changed seaweedfs: unknown () -> maintenance (Connection refused)
+INFO  jubilant.wait ---- /0: unknown () -> maintenance (Connection refused)
+INFO  jubilant.wait ---- /1: unknown () -> maintenance (Connection refused)
+
+# == non-empty -> empty message ==
+INFO  jubilant.wait app status changed seaweedfs: maintenance (reconfiguring) -> active
+INFO  jubilant.wait ---- /0: maintenance (reconfiguring) -> active
+INFO  jubilant.wait ---- /1: maintenance (reconfiguring) -> active
+
+# == multi-unit: /0 changes, /1, /2 unchanged ==
+INFO  jubilant.wait app status changed tempo: waiting () -> active (ready)
+INFO  jubilant.wait ---- /0: waiting () -> active (ready)
+
+# == multi-unit: /0, /1 change differently, /2 unchanged ==
+INFO  jubilant.wait app status changed tempo: maintenance () -> active
+INFO  jubilant.wait ---- /0: maintenance () -> active (ready)
+INFO  jubilant.wait ---- /1: maintenance () -> error (crashed)
+
+# == app has no units (e.g. subordinate charm) ==
+INFO  jubilant.wait app status changed nrpe: blocked (Nagios not configured)
